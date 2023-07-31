@@ -1,0 +1,31 @@
+{% extends "rosphere/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <div class="register-block">
+      <h1>Join now!</h1>
+      <form method="POST" action="#">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="login-button-wrapper">
+              <button class="btn" type="submit">Register</button>
+          </div>
+          <div class="login-register">
+              <p class="account-question"> Already have an account?
+                <a href="{% url 'login' %}" class="sign-in">Log In</a>
+              </p>
+        </div>
+      </form>
+  </div>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+{% endblock content %}

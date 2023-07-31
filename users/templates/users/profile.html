@@ -1,0 +1,49 @@
+{% extends "rosphere/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+  <div class="profile-block">
+      <div class="left-profile">
+          <img class="profile-image" src="{{ user.profile.image.url }}">
+          <div class="username">{{ user.username }}</div>
+          <div class="email">{{ user.email }}</div>
+          <div class="bio">{{ user.profile.bio }}</div>
+
+          <form method="POST" action="#" enctype="multipart/form-data">
+              <h2>Profile Info</h2>
+              {% csrf_token %}
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+              <div class="login-button-wrapper">
+                  <button class="btn" type="submit">Update</button>
+              </div>
+          </form>
+
+      </div>
+
+
+      <div class="right-profile">
+          {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+          {% endif %}
+          <div class="profile-posts-header">
+              Posts
+          </div>
+
+          <div class="profile-posts">
+              {% for post in posts %}
+                  <h1>{{ post.title }}</h1>
+                  <p>By {{ post.author }} on {{ post.date_posted|date:"F d, Y"}}</p>
+                  <p>{{ post.content }}</p>
+              {% endfor %}
+          </div>
+
+      </div>
+
+  </div>
+{% endblock content %}

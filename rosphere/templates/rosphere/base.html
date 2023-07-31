@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/rosphere/main.css?{% now 'U' %}"
+    />
+
+    {% if title %}
+    <title>Django Network - {{ title }}</title>
+    {% else %}
+    <title>Django Network</title>
+    {% endif %}
+  </head>
+  <body>
+    <div id="header">
+      <div class="container-wrapper">
+        <div class="container-navigation">
+          <nav class="navigation">
+            <h2 class="logo">Logo</h2>
+            <ul class="sidemenu">
+              <li><a href="{% url 'rosphere-home' %}">Home</a></li>
+              <li><a href="{% url 'rosphere-about' %}">About</a></li>
+              {% if user.is_authenticated %}
+              <li>
+                <a class="btnLogin-popup" href="{% url 'post-create' %}"
+                  >New Post</a
+                >
+              </li>
+              <li>
+                <a class="btnLogin-popup" href="{% url 'profile' %}">Profile</a>
+              </li>
+              <li>
+                <a class="btnLogin-popup" href="{% url 'logout' %}">Logout</a>
+              </li>
+              {% else %}
+              <li>
+                <a class="btnLogin-popup" href="{% url 'login' %}">Login</a>
+              </li>
+              <li>
+                <a class="btnLogin-popup" href="{% url 'register' %}"
+                  >Register</a
+                >
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+
+        <div class="container">
+          <!--          {% if messages %}-->
+          <!--            {% for message in messages %}-->
+          <!--                <div class="alert alert-{{ message.tags }}">-->
+          <!--                    {{ message }}-->
+          <!--                </div>-->
+          <!--            {% endfor %}-->
+          <!--          {% endif %}-->
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

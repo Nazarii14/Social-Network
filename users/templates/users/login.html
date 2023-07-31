@@ -1,0 +1,21 @@
+{% extends "rosphere/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="login-block">
+        <h1>Log in</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="login-button-wrapper">
+                <button class="btn" type="submit">Log in</button>
+            </div>
+        </form>
+        <div class="dont-have-an-account-wrapper">
+            <p class="account-question">Don't have an account?
+                <a class="register" href="{% url 'register' %}">Register</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock content %}

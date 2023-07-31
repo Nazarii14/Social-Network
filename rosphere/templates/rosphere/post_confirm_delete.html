@@ -1,0 +1,27 @@
+{% extends "rosphere/base.html" %}
+{% load static %}
+{% block content %}
+
+  <div class="register-block">
+      <h1>Delete Post</h1>
+      <form method="POST" action="#">
+          {% csrf_token %}
+          <h2>Are you sure you want to delete the post "{{ object.title }}"?</h2>
+
+          <div class="login-button-wrapper">
+              <button class="btn" type="submit">Yes, delete!</button>
+              <a class="btn" href="{% url 'post-detail' object.id %}">Cancel</a>
+          </div>
+      </form>
+  </div>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+{% endblock content %}
